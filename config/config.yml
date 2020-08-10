@@ -1,0 +1,8 @@
+---
+:settings:
+  port: 3000
+  use_auth: true
+
+:github:
+  user: kandellak
+  password: 123456

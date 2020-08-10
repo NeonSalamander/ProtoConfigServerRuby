@@ -2,8 +2,8 @@ require 'sinatra/base'
 require 'YAML'
 
 class ConfigServer < Sinatra::Base
-  config = YAML::load_file(File.join(Dir.pwd, 'config', 'users.yml'))
-
+  config = YAML::load_file(File.join(Dir.pwd, 'config', 'config.yml'))
+  users = YAML::load_file(File.join(Dir.pwd, 'users', 'users.yml'))
   configure :production, :development do
     enable :logging
   end
