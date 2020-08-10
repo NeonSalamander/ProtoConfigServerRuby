@@ -1,0 +1,9 @@
+---
+:users:
+  userA:
+    :login: kandellak
+    :password: passwordA
+    :otherdata: xxxxx
+  userB:
+    :login: kandellaster
+    :password: passwordB
