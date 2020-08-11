@@ -2,17 +2,17 @@ require 'sinatra/base'
 require 'YAML'
 require './classes/users'
 
-users = Users.new
-users.add_user(User.new('kandellak', '555555'))
-users.add_user(User.new('NoirKnight', '77777'))
+users = YAML::load_file(File.join(Dir.pwd, 'config', 'users.yml'))
 
-
-users.iterator.each do |item|
-  puts item
+usersbase = Users.new
+users[:users].each do |user, details|
+  usersbase.add_user(User.new(user, details[:token]))
 end
 
-
-findby = users.find_by_token('77777')
+usersbase.iterator.each do |item|
+  puts item.token
+end
+findby = usersbase.find_by_token('7777777')
 puts findby
 
 
