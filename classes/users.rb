@@ -34,5 +34,18 @@ class Users
     @collection << item
   end
 
+  def find_by_token(token)
+    return @collection.find {|user| user.token = token }
+  end
+
+end
+
+class User
+  attr_accessor :name, :token
+
+  def initialize(name, token)
+    @name = name
+    @token = token
+  end
 
 end

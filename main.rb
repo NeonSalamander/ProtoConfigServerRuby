@@ -3,14 +3,17 @@ require 'YAML'
 require './classes/users'
 
 users = Users.new
-users.add_user(222)
-users.add_user(555)
-users.add_user(777)
-users.add_user(333)
+users.add_user(User.new('kandellak', '555555'))
+users.add_user(User.new('NoirKnight', '77777'))
+
 
 users.iterator.each do |item|
   puts item
 end
+
+
+findby = users.find_by_token('77777')
+puts findby
 
 
 # class ConfigServer < Sinatra::Base
