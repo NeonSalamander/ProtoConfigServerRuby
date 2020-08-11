@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'YAML'
+require 'classes/users'
 
 class ConfigServer < Sinatra::Base
   config = YAML::load_file(File.join(Dir.pwd, 'config', 'config.yml'))

@@ -1,9 +1,10 @@
 ---
 :users:
-  userA:
+  kandellak:
     :login: kandellak
     :password: passwordA
-    :otherdata: xxxxx
-  userB:
+    :token: 5555555
+  noirknight:
     :login: kandellaster
     :password: passwordB
+    :token: 5555555
