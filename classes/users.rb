@@ -35,7 +35,8 @@ class Users
   end
 
   def find_by_token(token)
-    return @collection.find {|user| user.token = token }
+    #Это явно попахивает говниной ага,
+    return @collection.find { |user| user.token.to_s == token }
   end
 
 end
