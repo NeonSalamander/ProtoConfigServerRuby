@@ -20,7 +20,7 @@ class ConfigServer < Sinatra::Base
     # Сделать проверку токена был ли он передан
     # Аутентификация уже есть
     # Сделать проверку наличия у пользователя прав на приложение настройки которого он запрашивает
-    # Все это желательно через middleware
+    # Все это желательно через middleware хотя в примерах на SO так делают
     req_token = request.env["HTTP_APIKEY"]
     user = usersbase.find_by_token(req_token)
 
