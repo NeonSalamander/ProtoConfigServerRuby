@@ -1,8 +1,7 @@
 ---
 :settings:
-  port: 3000
-  use_auth: true
-
-:github:
-  user: kandellak
-  password: 123456
+  config_server:
+    port: 3000
+    use_auth: true
+    user: kandellak
+    password: 123456
