@@ -19,23 +19,15 @@ class ConfigServer < Sinatra::Base
     usersbase.add_user(User.new(user, details[:token]))
   end
 
-
   get '/' do
     # Сделать проверку наличия у пользователя прав на приложение настройки которого он запрашивает
-    # Выводить нормальные статусы при ошибке
     req_token = request.env["HTTP_APIKEY"]
     user = usersbase.find_by_token(req_token)
-    if use_auth then #Проверка на то включена ли вообще аутентификация
-
-      halt 403, 'missing api token' unless !req_token.nil?
-
-
-      if user.instance_of? User then #Проверка на то что токен есть пользователя и если есть метод вернет объект User
-        "Hello from MyApp!"
-      else
-        halt 500
-     end
-      else
+    if use_auth then
+      halt 400, 'Missing api token!' unless !req_token.nil?
+      halt 401, 'No user with this token!' unless user.instance_of? User
+      "Hello from MyApp!"
+    else
       "Hello from MyApp! no auth"
     end
   end
