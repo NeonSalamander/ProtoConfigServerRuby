@@ -27,11 +27,7 @@ class ConfigServer < Sinatra::Base
     user = usersbase.find_by_token(req_token)
     if use_auth then #Проверка на то включена ли вообще аутентификация
 
-      # if req_token == nil then #Проверка на наличие токена в хедере запроса
-      # halt 403
-      #   body "No Token"
-      # end
-      halt 403, 'missing api token' unless req_token.nil?
+      halt 403, 'missing api token' unless !req_token.nil?
 
 
       if user.instance_of? User then #Проверка на то что токен есть пользователя и если есть метод вернет объект User
