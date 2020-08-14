@@ -21,19 +21,18 @@ class ConfigServer < Sinatra::Base
 
 
   get '/' do
-    # Сделать проверку на сам факт использования аутентификации - done
-    # Сделать проверку токена был ли он передан
-    # Аутентификация - done
     # Сделать проверку наличия у пользователя прав на приложение настройки которого он запрашивает
-    # Все это желательно через middleware хотя в примерах на SO так делают
+    # Выводить нормальные статусы при ошибке
     req_token = request.env["HTTP_APIKEY"]
     user = usersbase.find_by_token(req_token)
-    #вот эта конструкция наверняка делается элегантнее ага
     if use_auth then #Проверка на то включена ли вообще аутентификация
 
-      if req_token == nil then #Проверка на наличие токена в хедере запроса
-        halt 500 #Если токена нет отдадим ошибку
-      end
+      # if req_token == nil then #Проверка на наличие токена в хедере запроса
+      # halt 403
+      #   body "No Token"
+      # end
+      halt 403, 'missing api token' unless req_token.nil?
+
 
       if user.instance_of? User then #Проверка на то что токен есть пользователя и если есть метод вернет объект User
         "Hello from MyApp!"
