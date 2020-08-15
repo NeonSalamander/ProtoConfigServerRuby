@@ -42,11 +42,12 @@ class Users
 end
 
 class User
-  attr_accessor :name, :token
+  attr_accessor :name, :token, :applications
 
-  def initialize(name, token)
+  def initialize(name, token, applications)
     @name = name
     @token = token
+    @applications = applications
   end
 
 end

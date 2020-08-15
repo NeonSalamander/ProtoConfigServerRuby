@@ -16,7 +16,14 @@ class ConfigServer < Sinatra::Base
 
   usersbase = Users.new
   users[:users].each do |user, details|
-    usersbase.add_user(User.new(user, details[:token]))
+    usersbase.add_user(User.new(user, details[:token], details[:applications] ))
+    #Это для заполнения приложений и итерирования
+    # p.ids.push("55")
+    #
+    # #iterate
+    # p.ids.each do |i|
+    #   puts i
+    # end
   end
 
   get '/' do
