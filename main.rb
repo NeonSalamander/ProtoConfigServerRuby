@@ -16,7 +16,7 @@ class ConfigServer < Sinatra::Base
 
   usersbase = Users.new
   users[:users].each do |user, details|
-    usersbase.add_user(User.new(user, details[:token], details[:applications] ))
+    usersbase.add_user(User.new(user, details[:token], details[:applications]))
     #Это для заполнения приложений и итерирования
     # p.ids.push("55")
     #
@@ -30,14 +30,13 @@ class ConfigServer < Sinatra::Base
     # Сделать проверку наличия у пользователя прав на приложение настройки которого он запрашивает
     req_token = request.env["HTTP_APIKEY"]
     user = usersbase.find_by_token(req_token)
-    if use_auth then
+    if use_auth
       halt 400, 'Missing api token!' unless !req_token.nil?
       halt 401, 'No user with this token!' unless user.instance_of? User
-      "Hello from MyApp!"
+      'Hello from MyApp!'
     else
-      "Hello from MyApp! no auth"
+      'Hello from MyApp! no auth'
     end
   end
   run!
 end
-
