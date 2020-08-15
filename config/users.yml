@@ -4,6 +4,12 @@
     :login: kandellak
     :password: passwordA
     :token: 5555555
+    :applications:
+      - test_app
+      - cms
+      - mail
+      - microservices
+      - libs
   noirknight:
     :login: kandellaster
     :password: passwordB
