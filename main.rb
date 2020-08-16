@@ -33,6 +33,8 @@ class ConfigServer < Sinatra::Base
     if use_auth
       halt 400, 'Missing api token!' unless !req_token.nil?
       halt 401, 'No user with this token!' unless user.instance_of? User
+      #Добавить проверку на отсутствие приложений - если приложения не указаны значит имеет доступ к всем
+      #puts user.canViewConfiApplication('mail')
       'Hello from MyApp!'
     else
       'Hello from MyApp! no auth'

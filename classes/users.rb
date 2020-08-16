@@ -51,7 +51,7 @@ class User
   end
 
   def canViewConfiApplication(application)
-
+    @applications.include?(application)
   end
 
 end
