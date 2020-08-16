@@ -4,6 +4,7 @@ require './classes/users'
 
 class ConfigServer < Sinatra::Base
   use_auth = false
+  port = 3000 #default
   config = YAML::load_file(File.join(Dir.pwd, 'config', 'config.yml'))
   users = YAML::load_file(File.join(Dir.pwd, 'config', 'users.yml'))
   configure :production, :development do
@@ -11,19 +12,15 @@ class ConfigServer < Sinatra::Base
   end
 
   config[:settings].each do |settings, value|
-    use_auth = value["use_auth"]
+    use_auth = value['use_auth']
+    port = value['port']
   end
+
+  set :port, port
 
   usersbase = Users.new
   users[:users].each do |user, details|
     usersbase.add_user(User.new(user, details[:token], details[:applications]))
-    #Это для заполнения приложений и итерирования
-    # p.ids.push("55")
-    #
-    # #iterate
-    # p.ids.each do |i|
-    #   puts i
-    # end
   end
 
   get '/:application' do

@@ -1,7 +1,7 @@
 ---
 :settings:
   config_server:
-    port: 3000
+    port: 3030
     use_auth: true
     user: kandellak
     password: 123456
