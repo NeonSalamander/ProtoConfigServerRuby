@@ -50,4 +50,8 @@ class User
     @applications = applications
   end
 
+  def canViewConfiApplication(application)
+
+  end
+
 end
