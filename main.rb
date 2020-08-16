@@ -26,15 +26,15 @@ class ConfigServer < Sinatra::Base
     # end
   end
 
-  get '/' do
-    # Сделать проверку наличия у пользователя прав на приложение настройки которого он запрашивает
+  get '/:application' do
     req_token = request.env["HTTP_APIKEY"]
     user = usersbase.find_by_token(req_token)
     if use_auth
       halt 400, 'Missing api token!' unless !req_token.nil?
       halt 401, 'No user with this token!' unless user.instance_of? User
-      #Добавить проверку на отсутствие приложений - если приложения не указаны значит имеет доступ к всем
-      #puts user.canViewConfiApplication('mail')
+      halt 403, 'No access to application settings' unless user.canViewConfiApplication(params['application'])
+
+
       'Hello from MyApp!'
     else
       'Hello from MyApp! no auth'
