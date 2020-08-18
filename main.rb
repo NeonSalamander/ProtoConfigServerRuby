@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'YAML'
 require 'logger'
 require './classes/users'
+require './classes/git_manager'
 require 'rufus/scheduler'
 
 class ConfigServer < Sinatra::Base
@@ -31,9 +32,11 @@ class ConfigServer < Sinatra::Base
   #TZ вытащить в настройки
   ENV['TZ'] = TZ
   scheduler = Rufus::Scheduler.new
-  scheduler.every '5s' do
-    puts "task is running"
-  end
+  # scheduler.every '5s' do
+  #   puts "task is running"
+  # end
+  checkRepo = GitHandler.new('repo_config_server')
+  scheduler.every '5s', checkRepo
 
   set :port, port
 
