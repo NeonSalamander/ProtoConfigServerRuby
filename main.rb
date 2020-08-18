@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'YAML'
 require 'logger'
 require './classes/users'
+require 'rufus/scheduler'
 
 class ConfigServer < Sinatra::Base
   use_auth = false
@@ -24,6 +25,12 @@ class ConfigServer < Sinatra::Base
   config[:settings].each do |settings, value|
     use_auth = value['use_auth']
     port = value['port']
+  end
+
+  scheduler = Rufus::Scheduler.new
+
+  scheduler.every '5s' do
+    puts "task is running"
   end
 
   set :port, port
