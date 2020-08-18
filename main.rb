@@ -25,10 +25,12 @@ class ConfigServer < Sinatra::Base
   config[:settings].each do |settings, value|
     use_auth = value['use_auth']
     port = value['port']
+    TZ = value['timezone']
   end
 
+  #TZ вытащить в настройки
+  ENV['TZ'] = TZ
   scheduler = Rufus::Scheduler.new
-
   scheduler.every '5s' do
     puts "task is running"
   end

@@ -3,5 +3,6 @@
   config_server:
     port: 3030
     use_auth: true
+    timezone: Asia/Irkutsk
     user: kandellak
     password: 123456
