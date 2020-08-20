@@ -8,3 +8,16 @@ class GitHandler
     puts "check #{@repository}"
   end
 end
+
+
+class GitRepository
+
+  attr_accessor :url
+  attr_reader :last_commit
+
+  def initialize
+    super
+  end
+
+
+end
