@@ -1,3 +1,5 @@
+require 'git'
+
 class GitHandler
   #сюда нужно передать инфу о репозитории, сделать класс или хеш
   def initialize(repository)
@@ -15,8 +17,10 @@ class GitRepository
   attr_accessor :url
   attr_reader :last_commit
 
-  def initialize
-    super
+  def initialize(url)
+    @url = url
+    g = Git.init
+    g = Git.clone(@url, 'NAME', :path => File.join(Dir.pwd, 'GitRepoLocal'))
   end
 
 

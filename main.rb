@@ -53,6 +53,9 @@ class ConfigServer < Sinatra::Base
       halt 400, 'Missing api token!' unless !req_token.nil?
       halt 401, 'No user with this token!' unless user.instance_of? User
       halt 403, 'No access to application settings' unless user.canViewConfiApplication(params['application'])
+
+      gg = GitRepository.new('https://github.com/primaldevelop/ConfigServerFiles.git')
+
       'Hello from MyApp!'
     else
       'Hello from MyApp! no auth'
