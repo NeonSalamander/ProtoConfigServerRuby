@@ -19,8 +19,16 @@ class GitRepository
 
   def initialize(url)
     @url = url
-    g = Git.init
-    g = Git.clone(@url, 'NAME', :path => File.join(Dir.pwd, 'GitRepoLocal'))
+    directory = File.join(Dir.pwd, 'GitRepoLocal/ConfigServer')
+    if File.directory?(directory) then
+      g = Git.open(directory)
+      g.pull('origin', 'master')
+      #g = Git.open(directory, :log => Logger.new(STDOUT))
+    else
+      # g = Git.init
+      # g = Git.clone(@url, 'ConfigServer', :path => directory)
+    end
+
   end
 
 
