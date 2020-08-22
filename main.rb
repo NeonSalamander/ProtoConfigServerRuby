@@ -35,7 +35,7 @@ class ConfigServer < Sinatra::Base
   # scheduler.every '5s' do
   #   puts "task is running"
   # end
-  checkRepo = GitHandler.new('repo_config_server')
+  checkRepo = GitRepository.new('https://github.com/primaldevelop/ConfigServerFiles.git')
   scheduler.every '5s', checkRepo
 
   set :port, port
@@ -54,7 +54,7 @@ class ConfigServer < Sinatra::Base
       halt 401, 'No user with this token!' unless user.instance_of? User
       halt 403, 'No access to application settings' unless user.canViewConfiApplication(params['application'])
 
-      gg = GitRepository.new('https://github.com/primaldevelop/ConfigServerFiles.git')
+
 
       'Hello from MyApp!'
     else

@@ -24,7 +24,6 @@ class GitRepository
     if File.directory?(repo_directory) then
       g = Git.open(repo_directory)
       g.pull('origin', 'master')
-      #g = Git.open(directory, :log => Logger.new(STDOUT))
     else
        g = Git.init
        g = Git.clone(@url, 'ConfigServer', :path => work_directory)
@@ -33,7 +32,7 @@ class GitRepository
   end
 
   def call(job, time)
-    puts "check #{@repository}"
+    puts "check #{@url}"
   end
 
 
