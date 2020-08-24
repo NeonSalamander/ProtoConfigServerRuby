@@ -5,6 +5,6 @@
     use_auth: true
     timezone: Asia/Irkutsk
     repository_url: https://github.com/primaldevelop/ConfigServerFiles.git
-    cron_duration: 10s
+    cron_duration: 5s
     user: kandellak
     password: 123456

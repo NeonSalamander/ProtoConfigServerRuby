@@ -34,9 +34,7 @@ class ConfigServer < Sinatra::Base
 
   ENV['TZ'] = TZ
   scheduler = Rufus::Scheduler.new
-  # scheduler.every '5s' do
-  #   puts "task is running"
-  # end
+
   checkRepo = GitRepository.new(repo_url)
   scheduler.every "#{cron_duration}", checkRepo
 
