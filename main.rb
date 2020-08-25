@@ -1,9 +1,9 @@
 require 'sinatra/base'
 require 'YAML'
 require 'logger'
+require 'rufus/scheduler'
 require './classes/users'
 require './classes/git_manager'
-require 'rufus/scheduler'
 
 class ConfigServer < Sinatra::Base
 
@@ -26,10 +26,10 @@ class ConfigServer < Sinatra::Base
     settingsServer[settings] = value
   end
 
-  ENV['TZ'] = TZ
+  ENV['TZ'] = settingsServer['timezone']
   scheduler = Rufus::Scheduler.new
 
-  checkRepo = GitRepository.new(settingsServer['repo_url'])
+  checkRepo = GitRepository.new(settingsServer['repository_url'])
   scheduler.every "#{settingsServer['cron_duration']}", checkRepo
 
   set :port, settingsServer['port']
