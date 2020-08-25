@@ -1,2 +1,2 @@
 # ProtoConfigSeverRuby
-Prototype ConfigServer in ruby
+Prototype ConfigServer in ruby for learn
