@@ -14,7 +14,6 @@ class UsersIterator
     return @collection.each(&block)
   end
 
-
 end
 
 class Users

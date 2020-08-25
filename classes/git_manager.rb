@@ -22,11 +22,14 @@ class GitRepository
 
   def call(job, time)
     self.git.pull('origin', 'master')
-    puts "check #{self.url}"
   end
 
   def get_config(application_name)
-    ss = Dir["#{self.repo_directory}/config*"].first
+    file_name = Dir["#{@repo_directory}/#{application_name}*"].first
+    file = File.open(file_name, "rb")
+    res = file.read
+    file.close
+    res
   end
 
 end

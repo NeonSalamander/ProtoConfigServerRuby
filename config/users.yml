@@ -10,6 +10,7 @@
       - mail
       - microservices
       - libs
+      - config_mail
   noirknight:
     :login: kandellaster
     :password: passwordB
