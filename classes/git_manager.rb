@@ -21,12 +21,12 @@ class GitRepository
   end
 
   def call(job, time)
-    @git.pull('origin', 'master')
-    puts "check #{@url}"
+    self.git.pull('origin', 'master')
+    puts "check #{self.url}"
   end
 
   def get_config(application_name)
-    ss = Dir["#{@repo_directory}/config*"].first
+    ss = Dir["#{self.repo_directory}/config*"].first
   end
 
 end

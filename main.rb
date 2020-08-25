@@ -6,10 +6,8 @@ require './classes/git_manager'
 require 'rufus/scheduler'
 
 class ConfigServer < Sinatra::Base
-  repo_url = ''
-  cron_duration = ''
-  use_auth = false
-  port = 3000 # default
+
+  settingsServer = {}
   config = YAML::load_file(File.join(Dir.pwd, 'config', 'config.yml'))
   users = YAML::load_file(File.join(Dir.pwd, 'config', 'users.yml'))
 
@@ -25,20 +23,16 @@ class ConfigServer < Sinatra::Base
      $logger = Logger.new(STDOUT)
   end
   config[:settings].each do |settings, value|
-    use_auth = value['use_auth']
-    port = value['port']
-    TZ = value['timezone']
-    repo_url = value['repository_url']
-    cron_duration = value['cron_duration']
+    settingsServer[settings] = value
   end
 
   ENV['TZ'] = TZ
   scheduler = Rufus::Scheduler.new
 
-  checkRepo = GitRepository.new(repo_url)
-  scheduler.every "#{cron_duration}", checkRepo
+  checkRepo = GitRepository.new(settingsServer['repo_url'])
+  scheduler.every "#{settingsServer['cron_duration']}", checkRepo
 
-  set :port, port
+  set :port, settingsServer['port']
 
   usersbase = Users.new
   users[:users].each do |user, details|
@@ -48,7 +42,7 @@ class ConfigServer < Sinatra::Base
   get '/:application' do
     req_token = request.env['HTTP_APIKEY']
     user = usersbase.find_by_token(req_token)
-    if use_auth
+    if settingsServer['use_auth']
       logger.info('логировать все запросы конфигураций приложения')
       halt 400, 'Missing api token!' unless !req_token.nil?
       halt 401, 'No user with this token!' unless user.instance_of? User
