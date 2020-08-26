@@ -26,7 +26,7 @@ class GitRepository
 
   def get_config(application_name)
     file_name = Dir["#{@repo_directory}/#{application_name}*"].first
-    file = File.open(file_name, "rb")
+    file = File.open(file_name, "r")
     res = file.read
     file.close
     res

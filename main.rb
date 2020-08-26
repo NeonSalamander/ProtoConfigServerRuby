@@ -2,8 +2,8 @@ require 'sinatra/base'
 require 'YAML'
 require 'logger'
 require 'rufus/scheduler'
-require './classes/users'
-require './classes/git_manager'
+require './lib/users'
+require './lib/git_manager'
 
 class ConfigServer < Sinatra::Base
 
