@@ -22,6 +22,7 @@ class GitRepository
 
   def call(job, time)
     self.git.pull('origin', 'master')
+    puts 'check'
   end
 
   def get_config(application_name)

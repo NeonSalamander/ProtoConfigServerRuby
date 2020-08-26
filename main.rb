@@ -1,4 +1,4 @@
-require 'sinatra/base'
+require 'sinatra'
 require 'YAML'
 require 'logger'
 require 'rufus/scheduler'
@@ -43,7 +43,7 @@ class ConfigServer < Sinatra::Base
     req_token = request.env['HTTP_APIKEY']
     user = usersbase.find_by_token(req_token)
     if settings_server['use_auth']
-      logger.info('логировать все запросы конфигураций приложения')
+      #logger.info('логировать все запросы конфигураций приложения')
       halt 400, 'Missing api token!' unless !req_token.nil?
       halt 401, 'No user with this token!' unless user.instance_of? User
       halt 403, 'No access to application settings' unless user.canViewConfiApplication(params['application'])
