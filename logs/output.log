@@ -1,0 +1,11 @@
+== Sinatra (v2.0.8.1) has taken the stage on 3030 for development with backup from Puma
+*** SIGUSR2 not implemented, signal based restart unavailable!
+*** SIGUSR1 not implemented, signal based restart unavailable!
+*** SIGHUP not implemented, signal based logs reopening unavailable!
+Puma starting in single mode...
+* Version 4.3.5 (ruby 2.7.1-p83), codename: Mysterious Traveller
+* Min threads: 0, max threads: 16
+* Environment: development
+* Listening on tcp://[::1]:3030
+* Listening on tcp://127.0.0.1:3030
+Use Ctrl-C to stop
